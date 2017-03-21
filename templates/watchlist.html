@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Watchlist</title>
+</head>
+<body>
+    <div class='watchlist'>
+        <form action="/watchlist" method="POST">
+        {% csrf_token %}
+        {% for movie in movies %}
+            <h3> {{ movie.title }} </h3>
+            <ul>
+                <li>{{ movie.genre }}</li>
+                <li>{{ movie.actors }}</li>
+                <li>{{ movie.created_at }}</li>
+                Watched<input type="checkbox" name="is_watched" value="{{ movie.imdb_id }}" {% if movie.is_watched %} checked {% endif %} > <input type="submit" value="Delete from watchlist" />
+            </ul>
+            
+        {% endfor %}
+        <div class="htext"><input type="submit" value="Submit changes" /></div>
+        </form>
+    </div>
+</body>
+</html>

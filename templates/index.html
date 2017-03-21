@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>YOMDB</title>
+</head>
+<body>
+	<div style="width:20%">
+	<img src ="https://image.flaticon.com/icons/svg/230/230396.svg">
+	<form action="/" method="POST">
+		{% csrf_token %}
+		</br>
+		<p> Search for movie </p>
+		<input type="text" name="title"><br>
+		<div class="htext"><input type="submit" value="Search" /></div>
+	</form>
+	<div class="results">
+
+	<form action="/add" method="POST">
+		{% csrf_token %}
+		<h1>RESULTS:</h1>
+		{% for item in search_results %}
+    		<input type="checkbox" name="titles" value="{{ item.title }}"> {{ item.title }} {{ item.year }} <br>
+    		</br>
+		{% endfor %}
+	<input type="submit" value="Add to watchlist" />
+	</form>
+	</div>
+
+
+
+</body>
+<style>
+		body {
+    		background-color: #f3ffff;
+    	}
+
+</style>
+
+</html>
